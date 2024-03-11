@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "soundboar"
+version = "0.1.0"
+description = "Web-accessible server-client sound board"
+authors = ["Moritz Bock <mvb1996@gmail.com>"]
+readme = "README.md"
+repository = "https://github.com/soundboar/tail"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+python-vlc = "^3.0.20123"
+fastapi = "^0.110"
+uvicorn = {version="^0.27.1", extras=["standard"]}
+websockets = "^12.0"
+pydantic = "^2.6.2"
+python-multipart = "^0.0.9"
+beautifulsoup4 = "^4.12.3"
+requests = "^2.31.0"
+click = "^8.1.7"
+platformdirs = "^4.2.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+soundboar = 'soundboar.cli:cli'

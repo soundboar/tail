@@ -1,0 +1,8 @@
+python-vlc~=3.0.20123
+fastapi~=0.110
+uvicorn[standard]~=0.27.1
+websockets~=12.0
+pydantic~=2.6.2
+python-multipart~=0.0.9
+beautifulsoup4~=4.12.3
+requests~=2.31.0

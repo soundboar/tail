@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Websocket Debug</title>
+    </head>
+    <body>
+        <h1>Websocket Events</h1>
+        <ul id="events">
+        </ul>
+        <script>
+            const ws = new WebSocket("ws://localhost:8000/api/events");
+            ws.onmessage = function(e) {
+                const events = document.getElementById("events")
+                const event = document.createElement("li")
+                const content = document.createTextNode(e.data)
+                event.appendChild(content)
+                events.appendChild(event)
+            };
+        </script>
+    </body>
+</html>
