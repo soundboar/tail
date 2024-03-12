@@ -1,0 +1,40 @@
+name: Release and Publish
+
+on:
+  push:
+    tags:
+      - v*
+permissions:
+  contents: write
+
+jobs:
+  build_release_and_publish:
+    runs-on: ubuntu-latest
+    environment: publish
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      - name: Install poetry
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install poetry
+          python -m poetry config virtualenvs.create false
+      - name: Install dependencies
+        run: python -m poetry install
+      - name: Build
+        run: python -m poetry build
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: dist/*
+      - name: Publish
+        env:
+          PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+        run: |
+          python -m poetry config pypi-token.pypi $PYPI_TOKEN
+          python -m poetry publish

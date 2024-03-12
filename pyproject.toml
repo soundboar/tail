@@ -7,7 +7,7 @@ readme = "README.md"
 repository = "https://github.com/soundboar/tail"
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.11"
 python-vlc = "^3.0.20123"
 fastapi = "^0.110"
 uvicorn = {version="^0.27.1", extras=["standard"]}
