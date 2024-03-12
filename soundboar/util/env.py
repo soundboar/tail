@@ -1,12 +1,13 @@
-import importlib.metadata
 from enum import StrEnum
 from typing import Callable, TypeVar
 from os import environ
 
+from soundboar import __title__
+
 Value = TypeVar('Value')
 DefaultValue = TypeVar('DefaultValue')
 
-PREFIX = __package__.upper() + "_"
+PREFIX = __title__.upper() + "_"
 
 
 class Var(StrEnum):

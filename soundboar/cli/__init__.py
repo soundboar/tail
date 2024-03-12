@@ -112,12 +112,17 @@ def uninstall():
               help="Do not install but abort if the data directory does not exist or is empty")
 @click.option('--development', is_flag=True, help="Run in development mode with hot-reload")
 @click.option('--cors-origin', default=None, help="Allow a specific cors origin")
+@click.option('--host', default=None, help="Host on which to run the server")
+@click.option('--port', type=int, default=None, help="On which port to run the server")
+
 @click.pass_context
 def run(
         ctx: click.Context,
         no_install: bool,
         development: bool,
-        cors_origin: str | None
+        cors_origin: str | None,
+        host: str | None,
+        port: int | None
 ):
     """Run soundboar"""
     if not no_install:
@@ -145,8 +150,8 @@ def run(
     from soundboar.util import env
     uvicorn.run("soundboar.app.app:app",
                 log_config=log_config,
-                host=env.get(env.Var.HOST, "127.0.0.1"),
-                port=env.get(env.Var.PORT, 8000, int),
+                host=host or env.get(env.Var.HOST, "127.0.0.1"),
+                port=port or env.get(env.Var.PORT, 8000, int),
                 **kwargs)
 
 
